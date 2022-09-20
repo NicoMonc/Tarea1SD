@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.client";
+option java_outer_classname = "ClientProto";
+option objc_class_prefix = "HLW";
+
+package client;
+
+service Casos {
+  rpc ListarID (BusquedaI) returns (stream CasoReply) {}
+  rpc ListarTitle (BusquedaS) returns (stream CasoReply) {}
+  rpc ListarDesc (BusquedaS) returns (stream CasoReply) {}
+  rpc ListarKey (BusquedaI) returns (stream CasoReply) {}
+  rpc ListarURL (BusquedaS) returns (stream CasoReply) {}
+  rpc Prueba (Empty) returns (stream CasoReply) {}
+}
+
+message BusquedaS {
+  string busqueda = 1;
+}
+
+message BusquedaI {
+  int32 busqueda = 1;
+}
+
+message CasoReply {
+  int32 id = 1;
+  string title = 2;
+  string description = 3;
+  int32 keywords = 4;
+  string URL = 5;
+}
+
+message Empty {}
